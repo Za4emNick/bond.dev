@@ -1,0 +1,1299 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <title>Bond.dev — Dmitrii Bondarev</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Bond.dev — портфолио Дмитрия Бондарева: киберспорт, продакшн и веб-разработка." />
+  <style>
+    :root {
+      --bg: #050510;
+      --bg-card: #0b0c15;
+      --bg-card-soft: #101222;
+      --accent: #5b6bff;
+      --accent2: #9f4bff;
+      --text: #f5f5f8;
+      --muted: #a0a0b5;
+      --border: rgba(255, 255, 255, 0.06);
+      --radius-lg: 22px;
+      --radius-xl: 26px;
+      --shadow-soft: 0 22px 80px rgba(0, 0, 0, 0.9);
+      --max-width: 1180px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      background: radial-gradient(circle at top, #181637 0%, #050510 45%, #020208 100%);
+      color: var(--text);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Segoe UI", sans-serif;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      padding: 28px 18px 60px;
+    }
+
+    .page {
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+
+    /* NAVBAR */
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 32px;
+      gap: 18px;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .logo {
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 8px 16px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: linear-gradient(120deg, rgba(91, 107, 255, 0.4), transparent);
+      text-shadow: 0 0 16px rgba(91, 107, 255, 0.8);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-size: 13px;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      transition: all 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+      border-color: var(--border);
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    /* social icons */
+
+    .social-icons {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .icon-btn {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      border: 1px solid rgba(120, 130, 255, 0.45);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #b7b8ff;
+      text-decoration: none;
+      font-size: 15px;
+      transition: 0.25s ease;
+      background: rgba(255, 255, 255, 0.02);
+      backdrop-filter: blur(4px);
+    }
+
+    .icon-btn:hover {
+      border-color: rgba(150, 90, 255, 0.9);
+      color: white;
+      box-shadow: 0 0 12px rgba(150, 90, 255, 0.9),
+                  0 0 26px rgba(90, 110, 255, 0.7);
+      transform: translateY(-2px);
+    }
+
+    .lang-switch {
+      display: flex;
+      gap: 10px;
+      margin-left: 16px;
+      border-left: 1px solid rgba(255,255,255,0.1);
+      padding-left: 14px;
+    }
+
+    .lang-switch span {
+      cursor: pointer;
+      font-size: 12px;
+      opacity: 0.55;
+      transition: 0.2s;
+    }
+
+    .lang-switch span:hover,
+    .lang-switch span.active {
+      opacity: 1;
+      color: var(--accent);
+    }
+
+    @media (max-width: 880px) {
+      .nav {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .nav-links {
+        flex-wrap: wrap;
+      }
+      .lang-switch {
+        margin-left: 0;
+        border-left: none;
+        padding-left: 0;
+      }
+    }
+
+    /* HERO */
+
+    .hero {
+      border-radius: var(--radius-xl);
+      background:
+        radial-gradient(circle at top left, rgba(91, 107, 255, 0.3), transparent 55%),
+        radial-gradient(circle at bottom right, rgba(159, 75, 255, 0.35), transparent 50%),
+        #050510;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 30px 32px;
+      display: grid;
+      grid-template-columns: minmax(0, 2.3fr) minmax(0, 1.8fr);
+      gap: 28px;
+      box-shadow: var(--shadow-soft);
+      margin-bottom: 40px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle at 20% 0%, rgba(255, 255, 255, 0.08), transparent 60%);
+      opacity: 0.7;
+      mix-blend-mode: soft-light;
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-kicker {
+      font-size: 13px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    .hero-title {
+      font-size: clamp(30px, 4vw, 40px);
+      line-height: 1.1;
+      margin-bottom: 10px;
+    }
+
+    .hero-title span {
+      color: var(--accent);
+    }
+
+    .hero-subtitle {
+      font-size: 16px;
+      color: var(--muted);
+      max-width: 440px;
+      margin-bottom: 22px;
+    }
+
+    .hero-roles {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 18px;
+    }
+
+    .hero-roles strong {
+      color: var(--text);
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .btn {
+      border-radius: 999px;
+      padding: 10px 20px;
+      font-size: 14px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.22s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-primary {
+      color: #050510;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow:
+        0 0 26px rgba(91, 107, 255, 0.85),
+        0 16px 40px rgba(0, 0, 0, 0.95);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow:
+        0 0 34px rgba(91, 107, 255, 0.95),
+        0 20px 50px rgba(0, 0, 0, 0.98);
+    }
+
+    .btn-ghost {
+      color: var(--text);
+      border-color: var(--border);
+      background: rgba(3, 4, 12, 0.8);
+    }
+
+    .btn-ghost:hover {
+      background: rgba(255, 255, 255, 0.02);
+      border-color: rgba(255, 255, 255, 0.12);
+    }
+
+    .hero-meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .hero-meta-pill {
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      padding: 6px 10px;
+      background: rgba(4, 5, 16, 0.85);
+    }
+
+    /* Photo block */
+
+    .hero-photo-wrap {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-photo-card {
+      position: relative;
+      border-radius: 26px;
+      background: radial-gradient(circle at top, rgba(255, 255, 255, 0.06), transparent 60%),
+                  #050612;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      padding: 14px;
+      box-shadow: var(--shadow-soft);
+      max-width: 320px;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .hero-photo {
+      width: 100%;
+      border-radius: 20px;
+      display: block;
+      object-fit: cover;
+      max-height: 360px;
+    }
+
+    .hero-photo-badge {
+      position: absolute;
+      bottom: 18px;
+      right: 18px;
+      border-radius: 999px;
+      padding: 6px 12px;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      background: rgba(5, 7, 22, 0.9);
+      border: 1px solid rgba(91, 107, 255, 0.8);
+      color: var(--muted);
+      backdrop-filter: blur(10px);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .hero-photo-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 99px;
+      background: var(--accent2);
+      box-shadow: 0 0 16px rgba(159, 75, 255, 1);
+    }
+
+    @media (max-width: 880px) {
+      body {
+        padding: 20px 12px 40px;
+      }
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+        padding: 24px 18px;
+      }
+      .hero-photo-wrap {
+        order: -1;
+        justify-content: flex-start;
+      }
+      .hero-photo-card {
+        max-width: 260px;
+      }
+    }
+
+    /* SECTION BASE */
+
+    .section {
+      margin-top: 38px;
+      margin-bottom: 16px;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .section-title {
+      font-size: 22px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .section-subtitle {
+      font-size: 13px;
+      color: var(--muted);
+      max-width: 380px;
+      text-align: right;
+    }
+
+    @media (max-width: 800px) {
+      .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .section-subtitle {
+        text-align: left;
+      }
+    }
+
+    /* SPECIALITIES (две карточки: Esports / Dev) */
+
+    .specialities-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    @media (max-width: 840px) {
+      .specialities-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .spec-card {
+      border-radius: var(--radius-lg);
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.02), rgba(2, 4, 14, 0.96));
+      border: 1px solid var(--border);
+      padding: 18px 18px 16px;
+      box-shadow: 0 18px 60px rgba(0, 0, 0, 0.85);
+    }
+
+    .spec-label {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .spec-title {
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+
+    .spec-text {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+
+    .spec-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .tag-pill {
+      font-size: 11px;
+      padding: 4px 9px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      background: rgba(3, 4, 14, 0.95);
+    }
+
+    /* EXPERIENCE COLUMNS */
+
+    .exp-column {
+      border-radius: var(--radius-lg);
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      padding: 18px 18px 16px;
+      box-shadow: 0 18px 60px rgba(0, 0, 0, 0.85);
+    }
+
+    .exp-column-title {
+      font-size: 15px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    .timeline-item {
+      border-radius: 16px;
+      background: var(--bg-card-soft);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 12px 12px 10px;
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    .timeline-item-title {
+      font-size: 14px;
+      color: var(--text);
+      margin-bottom: 2px;
+    }
+
+    .timeline-item-role {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    .timeline-item-role span {
+      color: var(--accent);
+    }
+
+    .timeline-item-text {
+      font-size: 12px;
+      margin-bottom: 6px;
+    }
+
+    .bullet-list {
+      list-style: none;
+      display: grid;
+      gap: 3px;
+      margin-bottom: 4px;
+    }
+
+    .bullet-list li::before {
+      content: "•";
+      color: var(--accent2);
+      margin-right: 5px;
+    }
+
+    /* PROJECTS */
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    @media (max-width: 900px) {
+      .projects-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .project-card {
+      border-radius: var(--radius-lg);
+      background: linear-gradient(145deg, rgba(91, 107, 255, 0.15), rgba(3, 5, 18, 0.98));
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      padding: 16px 16px 14px;
+      box-shadow: 0 18px 60px rgba(0, 0, 0, 0.9);
+    }
+
+    .project-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 4px;
+      align-items: center;
+    }
+
+    .project-name {
+      font-size: 15px;
+    }
+
+    .project-tagline {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .project-link {
+      font-size: 12px;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 999px;
+      padding: 6px 10px;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      background: rgba(8, 10, 32, 0.9);
+      white-space: nowrap;
+      transition: all 0.2s ease;
+    }
+
+    .project-link:hover {
+      box-shadow: 0 0 18px rgba(91, 107, 255, 0.9);
+    }
+
+    .project-text {
+      font-size: 13px;
+      color: var(--text);
+      margin-bottom: 4px;
+      opacity: 0.92;
+    }
+
+    .project-meta {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .stack-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .stack-pill {
+      font-size: 11px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      color: var(--muted);
+      background: rgba(10, 12, 28, 0.96);
+    }
+
+    /* CONTACT */
+
+    .contact-card {
+      margin-top: 20px;
+      border-radius: var(--radius-xl);
+      background:
+        radial-gradient(circle at left, rgba(91, 107, 255, 0.35), transparent 60%),
+        #060613;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 20px 20px 18px;
+      box-shadow: var(--shadow-soft);
+      display: grid;
+      grid-template-columns: minmax(0, 1.7fr) minmax(0, 1.4fr);
+      gap: 18px;
+    }
+
+    @media (max-width: 840px) {
+      .contact-card {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .contact-title {
+      font-size: 18px;
+      margin-bottom: 6px;
+    }
+
+    .contact-text {
+      font-size: 13px;
+      color: var(--muted);
+      max-width: 420px;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 10px;
+      font-size: 13px;
+    }
+
+    .contact-item {
+      border-radius: 16px;
+      background: rgba(5, 6, 18, 0.98);
+      border: 1px solid var(--border);
+      padding: 10px 11px;
+    }
+
+    .contact-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--muted);
+      margin-bottom: 3px;
+    }
+
+    .contact-value a,
+    .contact-value {
+      font-size: 13px;
+      color: var(--text);
+      text-decoration: none;
+      word-break: break-all;
+    }
+
+    .contact-value a:hover {
+      color: var(--accent);
+    }
+
+    .footer {
+      font-size: 11px;
+      color: var(--muted);
+      text-align: center;
+      margin-top: 18px;
+    }
+
+    /* GSAP base */
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <!-- NAVBAR -->
+    <header class="nav">
+      <div class="nav-left">
+        <div class="logo">Bond.dev</div>
+        <div class="social-icons">
+          <a href="https://www.instagram.com/dima_b0nd/" class="icon-btn" target="_blank" title="Instagram">
+            <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 1.8.3 2.2.5.5.3.9.7 1.2 1.2.2.4.4 1 .5 2.2.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c-.1 1.2-.3 1.8-.5 2.2-.3.5-.7.9-1.2 1.2-.4.2-1 .4-2.2.5-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2-.1-1.8-.3-2.2-.5-.5-.3-.9-.7-1.2-1.2-.2-.4-.4-1-.5-2.2C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.9c.1-1.2.3-1.8.5-2.2.3-.5.7-.9 1.2-1.2.4-.2 1-.4 2.2-.5C8.4 2.2 8.8 2.2 12 2.2m0 3a4.8 4.8 0 1 0 0 9.6 4.8 4.8 0 0 0 0-9.6m6-1.2a1.2 1.2 0 1 0 0 2.4 1.2 1.2 0 0 0 0-2.4z" />
+            </svg>
+          </a>
+
+          <a href="https://t.me/dima_b0nd" class="icon-btn" target="_blank" title="Telegram">
+            <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M9.8 17.6L9.9 14l7.4-6.7c.3-.3-.1-.4-.5-.2l-9 5.7-3.9-1.3c-.8-.3-.8-.8.2-1.2L20 6.2c.7-.3 1.3.2 1 1.2l-2.9 12c-.2.8-.7 1-1.4.7l-4.2-3.1-2 2c-.2.2-.4.1-.4-.1z"/>
+            </svg>
+          </a>
+
+          <a href="mailto:dimabond.dev@gmail.com" class="icon-btn" title="Email">
+            <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 13L2 6.8v10.4c0 .8.7 1.4 1.4 1.4h17.2c.8 0 1.4-.6 1.4-1.4V6.8L12 13zm0-2.2L21.6 5H2.4L12 10.8z"/>
+            </svg>
+          </a>
+
+          <a href="tel:+905010399572" class="icon-btn" title="Phone">
+            <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M6.6 2.9L8.8 3c.4 0 .8.3.9.7l1 3c.1.4 0 .8-.3 1l-1.6 1.6c1.1 2.2 2.9 4 5.1 5.1l1.6-1.6c.3-.3.7-.4 1-.3l3 1c.4.1.7.5.7.9l.1 2.3c0 .5-.3.9-.8 1-2 .6-6.4.3-10.5-3.8C3.3 10.1 3 5.7 3.6 3.7c.1-.5.5-.8 1-.8z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+      <nav class="nav-links">
+        <a href="#esports" data-i18n="nav_esports">Киберспорт</a>
+        <a href="#dev" data-i18n="nav_dev">Разработка</a>
+        <a href="#contact" data-i18n="nav_contact">Контакты</a>
+
+        <div class="lang-switch">
+          <span data-lang="ru" class="active">RU</span>
+          <span data-lang="en">EN</span>
+          <span data-lang="tr">TR</span>
+          <span data-lang="ar">AR</span>
+        </div>
+      </nav>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-inner">
+        <div class="hero-kicker" data-i18n="hero_kicker">Dmitrii Bondarev</div>
+        <h1 class="hero-title">
+          <span data-i18n="hero_title_line1">Esports&nbsp;Producer</span><br />
+          &amp; <span data-i18n="hero_title_line2">Web&nbsp;Developer</span>
+        </h1>
+        <p class="hero-subtitle" data-i18n="hero_subtitle">
+          Организую киберспортивные турниры федерального и международного уровня и создаю современные веб-сервисы: от SaaS-платформ до сайтов для ресторанов и городских карт.
+        </p>
+        <p class="hero-roles" data-i18n="hero_roles">
+          <strong>Два направления:</strong> отдельное портфолио по киберспорту и отдельное — по веб-разработке.
+        </p>
+        <div class="hero-buttons">
+          <a href="#esports" class="btn btn-primary" data-i18n="hero_btn_esports">Esports Portfolio</a>
+          <a href="#dev" class="btn btn-ghost" data-i18n="hero_btn_dev">Developer Portfolio</a>
+        </div>
+        <div class="hero-meta-row">
+          <div class="hero-meta-pill" data-i18n="hero_meta_1">4+ лет в организации турниров</div>
+          <div class="hero-meta-pill" data-i18n="hero_meta_2">1000+ игроков · 100&nbsp;000 зрителей</div>
+          <div class="hero-meta-pill" data-i18n="hero_meta_3">Next.js · интерактивные карты · SaaS</div>
+        </div>
+      </div>
+
+      <div class="hero-photo-wrap">
+        <div class="hero-photo-card">
+          <!-- Положи рядом с index.html файл dmitrii-bondarev.jpg -->
+          <img src="dmitrii-bondarev.jpg" alt="Dmitrii Bondarev" class="hero-photo" />
+          <div class="hero-photo-badge" data-i18n="hero_badge">
+            <span class="hero-photo-dot"></span>
+            Based in Türkiye · Remote
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SPECIALITIES -->
+    <section class="section">
+      <div class="section-header">
+        <h2 class="section-title" data-i18n="specialities_title">Specialities</h2>
+        <p class="section-subtitle" data-i18n="specialities_subtitle">
+          Две параллельные линии — киберспорт и веб-разработка. В каждой у меня есть собственный стек инструментов и реализованные проекты.
+        </p>
+      </div>
+      <div class="specialities-grid reveal">
+        <article class="spec-card">
+          <div class="spec-label" data-i18n="spec_esports_label">Esports</div>
+          <h3 class="spec-title" data-i18n="spec_esports_title">Турниры, продакшн, команды</h3>
+          <p class="spec-text" data-i18n="spec_esports_text">
+            Разрабатываю формат турниров, работаю с государственными заказчиками и корпорациями, управляю продакшеном и киберспортивными командами.
+          </p>
+          <div class="spec-tags">
+            <span class="tag-pill" data-i18n="spec_esports_tag1">Межведомственные турниры</span>
+            <span class="tag-pill" data-i18n="spec_esports_tag2">LAN &amp; online events</span>
+            <span class="tag-pill" data-i18n="spec_esports_tag3">Broadcast &amp; overlays</span>
+            <span class="tag-pill" data-i18n="spec_esports_tag4">Team management</span>
+          </div>
+        </article>
+        <article class="spec-card">
+          <div class="spec-label" data-i18n="spec_dev_label">Web Development</div>
+          <h3 class="spec-title" data-i18n="spec_dev_title">SaaS &amp; сайты для бизнеса</h3>
+          <p class="spec-text" data-i18n="spec_dev_text">
+            Делаю сайты и сервисы, которые решают задачи бизнеса: подписочные панели, ресторанные меню, интерактивные транспортные карты.
+          </p>
+          <div class="spec-tags">
+            <span class="tag-pill" data-i18n="spec_dev_tag1">Next.js / React</span>
+            <span class="tag-pill" data-i18n="spec_dev_tag2">SaaS-панели</span>
+            <span class="tag-pill" data-i18n="spec_dev_tag3">Меню для ресторанов</span>
+            <span class="tag-pill" data-i18n="spec_dev_tag4">Интерактивные карты</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ESPORTS CAREER -->
+    <section class="section" id="esports">
+      <div class="section-header">
+        <h2 class="section-title" data-i18n="esports_title">Esports Career</h2>
+        <p class="section-subtitle" data-i18n="esports_subtitle">
+          Опыт в киберспорте: от компьютерных клубов и студенческих составов до межведомственных турниров, республиканских лиг и собственных онлайн-кубков.
+        </p>
+      </div>
+
+      <div class="exp-column reveal">
+        <div class="exp-column-title" data-i18n="esports_column_title">Карьера в киберспорте</div>
+
+        <div class="timeline-item">
+          <div class="timeline-item-title" data-i18n="esports_martynov_title">
+            Межведомственный киберспортивный турнир по CS&nbsp;2 памяти Алексея Мартынова
+          </div>
+          <div class="timeline-item-role" data-i18n="esports_martynov_role">
+            Организатор мероприятий · <span>сентябрь 2024 — сейчас (1 год 4 месяца)</span>
+          </div>
+          <div class="timeline-item-text" data-i18n="esports_martynov_text">
+            Турнир среди федеральных органов исполнительной власти, органов Москвы и корпораций-партнёров Департамента добрых дел.
+          </div>
+          <ul class="bullet-list">
+            <li data-i18n="esports_martynov_b1">Создание визуальных эффектов и графики для трансляций</li>
+            <li data-i18n="esports_martynov_b2">Организация взаимодействия между ведомствами, корпорациями и подрядчиками</li>
+            <li data-i18n="esports_martynov_b3">Разработка визуального стиля и айдентики турнира</li>
+            <li data-i18n="esports_martynov_b4">PR и стратегия продвижения продукта</li>
+          </ul>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-item-title" data-i18n="esports_educup_title">Esports EduCup Uzbekistan</div>
+          <div class="timeline-item-role" data-i18n="esports_educup_role">
+            Киберспортивный организатор · <span>май 2024 — сейчас (1 год 8 месяцев)</span>
+          </div>
+          <div class="timeline-item-text" data-i18n="esports_educup_text">
+            Республиканский турнир по Dota&nbsp;2 и Counter-Strike 2 в Узбекистане.
+          </div>
+          <ul class="bullet-list">
+            <li data-i18n="esports_educup_b1">Главный организатор и технический администратор</li>
+            <li data-i18n="esports_educup_b2">Настройка трансляций на Twitch и YouTube</li>
+            <li data-i18n="esports_educup_b3">Управление командой организаторов и контроль проведения турнира</li>
+            <li data-i18n="esports_educup_b4">Масштаб: 1000 участников и 100&nbsp;000 зрителей</li>
+          </ul>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-item-title" data-i18n="esports_cybercup_title">CyberCup Russia</div>
+          <div class="timeline-item-role" data-i18n="esports_cybercup_role">
+            Организатор онлайн-кубка · <span>актуальные сезоны</span>
+          </div>
+          <div class="timeline-item-text" data-i18n="esports_cybercup_text">
+            Крупный онлайн-турнир с несколькими дисциплинами: CS2, Dota&nbsp;2, FIFA и онлайн-шахматы.
+          </div>
+          <ul class="bullet-list">
+            <li data-i18n="esports_cybercup_b1">Настройка структуры турнира и расписания матчей</li>
+            <li data-i18n="esports_cybercup_b2">Администрирование дисциплин и судейство</li>
+            <li data-i18n="esports_cybercup_b3">Коммуникация с игроками и менеджмент лиговых стадий</li>
+          </ul>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-item-title" data-i18n="esports_battleschool_title">
+            «Битва Школ» — Российский киберспортивный турнир
+          </div>
+          <div class="timeline-item-role" data-i18n="esports_battleschool_role">
+            Главный организатор · <span>июль 2021 — сейчас (4 года 6 месяцев)</span>
+          </div>
+          <ul class="bullet-list">
+            <li data-i18n="esports_battleschool_b1">Организация и администрирование этапов турнира</li>
+            <li data-i18n="esports_battleschool_b2">Настройка ТВ-трансляций</li>
+            <li data-i18n="esports_battleschool_b3">Руководство другими организаторами</li>
+            <li data-i18n="esports_battleschool_b4">Создание графики и визуальных эффектов</li>
+          </ul>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-item-title" data-i18n="esports_redragen_title">
+            Киберспортивная команда RedraGen
+          </div>
+          <div class="timeline-item-role" data-i18n="esports_redragen_role">
+            Менеджер команды · <span>январь 2023 — май 2023 (5 месяцев)</span>
+          </div>
+          <ul class="bullet-list">
+            <li data-i18n="esports_redragen_b1">Работа с игроками, построение тренировочного процесса и планирование матчей</li>
+            <li data-i18n="esports_redragen_b2">Работа с 12+ стаками 2k–4k elo, обучение и отбор лучших</li>
+            <li data-i18n="esports_redragen_b3">Коммуникация со стаффом от лица игроков</li>
+            <li data-i18n="esports_redragen_b4">Регистрация команд на турниры, сопровождение студенческих составов</li>
+          </ul>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-item-title" data-i18n="esports_colizeum_title">
+            Сеть компьютерных клубов COLIZEUM
+          </div>
+          <div class="timeline-item-role" data-i18n="esports_colizeum_role">
+            Менеджер по организации мероприятий · <span>июнь 2021 — август 2022 (1 год 3 месяца)</span>
+          </div>
+          <div class="timeline-item-text" data-i18n="esports_colizeum_text">
+            Работа в одной из крупнейших сетей компьютерных арен.
+          </div>
+          <ul class="bullet-list">
+            <li data-i18n="esports_colizeum_b1">Организация глобальных турниров по всей России</li>
+            <li data-i18n="esports_colizeum_b2">Работа по государственным заказам</li>
+            <li data-i18n="esports_colizeum_b3">Локальная и выездная организация LAN-ивентов</li>
+            <li data-i18n="esports_colizeum_b4">Опыт реализации ТВ-трансляций по киберспорту</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ESPORTS PROJECTS -->
+    <section class="section">
+      <div class="section-header">
+        <h2 class="section-title" data-i18n="esports_projects_title">Esports Projects</h2>
+        <p class="section-subtitle" data-i18n="esports_projects_subtitle">
+          Выборка проектов, где я отвечал за формат, организацию, продакшн трансляций и работу с участниками.
+        </p>
+      </div>
+
+      <div class="projects-grid reveal">
+        <article class="project-card">
+          <div class="project-top">
+            <div>
+              <div class="project-name" data-i18n="esports_proj_educup_name">Esports EduCup Uzbekistan</div>
+              <div class="project-tagline" data-i18n="esports_proj_educup_tagline">Республиканский турнир</div>
+            </div>
+            <a href="https://educup-uz.netlify.app/" class="project-link" target="_blank" rel="noreferrer" data-i18n="esports_proj_educup_link">
+              Открыть сайт →
+            </a>
+          </div>
+          <p class="project-text" data-i18n="esports_proj_educup_text">
+            Турнир по Dota&nbsp;2 и CS2 для игроков со всей республики. Продуманная структура стадий, онлайн-трансляции и работа с большим количеством участников.
+          </p>
+          <p class="project-meta" data-i18n="esports_proj_educup_meta">
+            Роль: главный организатор, технический администратор, настройка трансляций и визуального оформления.
+          </p>
+          <div class="stack-row">
+            <span class="stack-pill" data-i18n="esports_proj_educup_stack1">Tournament Ops</span>
+            <span class="stack-pill" data-i18n="esports_proj_educup_stack2">Broadcast</span>
+            <span class="stack-pill" data-i18n="esports_proj_educup_stack3">Dota&nbsp;2 / CS2</span>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="project-top">
+            <div>
+              <div class="project-name" data-i18n="esports_proj_cybercup_name">CyberCup Russia</div>
+              <div class="project-tagline" data-i18n="esports_proj_cybercup_tagline">
+                Онлайн-кубок по нескольким дисциплинам
+              </div>
+            </div>
+            <a href="https://t.me/cybercuprussia" class="project-link" target="_blank" rel="noreferrer" data-i18n="esports_proj_cybercup_link">
+              Открыть канал →
+            </a>
+          </div>
+          <p class="project-text" data-i18n="esports_proj_cybercup_text">
+            Онлайн-турнир, объединяющий несколько дисциплин: CS2, Dota&nbsp;2, FIFA и онлайн-шахматы. Акцент на управлении расписанием и дисциплинами.
+          </p>
+          <p class="project-meta" data-i18n="esports_proj_cybercup_meta">
+            Роль: организация, судейство, коммуникация с игроками, оформление матчей.
+          </p>
+          <div class="stack-row">
+            <span class="stack-pill" data-i18n="esports_proj_cybercup_stack1">CS2</span>
+            <span class="stack-pill" data-i18n="esports_proj_cybercup_stack2">Dota&nbsp;2</span>
+            <span class="stack-pill" data-i18n="esports_proj_cybercup_stack3">FIFA</span>
+            <span class="stack-pill" data-i18n="esports_proj_cybercup_stack4">Online Chess</span>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="project-top">
+            <div>
+              <div class="project-name" data-i18n="esports_proj_colizeum_name">COLIZEUM Arena Events</div>
+              <div class="project-tagline" data-i18n="esports_proj_colizeum_tagline">LAN-турниры и клубные ивенты</div>
+            </div>
+            <a href="https://colizeumarena.com/tr/" class="project-link" target="_blank" rel="noreferrer" data-i18n="esports_proj_colizeum_link">
+              Colizeum →
+            </a>
+          </div>
+          <p class="project-text" data-i18n="esports_proj_colizeum_text">
+            Реализация турниров и ивентов в сети компьютерных арен COLIZEUM: локальные мероприятия, LAN-финалы и спецпроекты по госзаказу.
+          </p>
+          <p class="project-meta" data-i18n="esports_proj_colizeum_meta">
+            Роль: организация ивентов, работа с площадкой, сетками и трансляциями.
+          </p>
+          <div class="stack-row">
+            <span class="stack-pill" data-i18n="esports_proj_colizeum_stack1">LAN Events</span>
+            <span class="stack-pill" data-i18n="esports_proj_colizeum_stack2">CS / Dota / FIFA</span>
+            <span class="stack-pill" data-i18n="esports_proj_colizeum_stack3">Offline Production</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- DEVELOPMENT CAREER -->
+    <section class="section" id="dev">
+      <div class="section-header">
+        <h2 class="section-title" data-i18n="dev_title">Development Career</h2>
+        <p class="section-subtitle" data-i18n="dev_subtitle">
+          В веб-разработке я фокусируюсь на понятных и полезных продуктах: сайты для ресторанов, студий дизайна и городских сервисов.
+        </p>
+      </div>
+
+      <div class="exp-column reveal">
+        <div class="exp-column-title" data-i18n="dev_column_title">Карьера в разработке</div>
+
+        <div class="timeline-item">
+          <div class="timeline-item-title" data-i18n="dev_bonddev_title">Bond.dev · Web Developer</div>
+          <div class="timeline-item-role" data-i18n="dev_bonddev_role">
+            Фриланс · <span>активная практика</span>
+          </div>
+          <ul class="bullet-list">
+            <li data-i18n="dev_bonddev_b1">Разработка сайтов для ресторанов, студий дизайна и локального бизнеса</li>
+            <li data-i18n="dev_bonddev_b2">Создание SaaS-панелей и лендингов под конкретные задачи</li>
+            <li data-i18n="dev_bonddev_b3">Работа с международными клиентами (в том числе через Upwork)</li>
+          </ul>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-item-title" data-i18n="dev_rest_title">Сайты для ресторанов и кафе</div>
+          <div class="timeline-item-role" data-i18n="dev_rest_role">
+            Next.js / Frontend · <span>реальные коммерческие проекты</span>
+          </div>
+          <ul class="bullet-list">
+            <li data-i18n="dev_rest_b1">Разработка сайта-меню для VALENS Café (Турция)</li>
+            <li data-i18n="dev_rest_b2">Фокус на mobile-first и визуальную подачу блюд</li>
+            <li data-i18n="dev_rest_b3">Подготовка структуры для подключения онлайн-заказа и бронирований</li>
+          </ul>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-item-title" data-i18n="dev_city_title">Интерактивные городские сервисы</div>
+          <div class="timeline-item-role" data-i18n="dev_city_role">
+            Frontend / Product idea · <span>Yalova Transport Map</span>
+          </div>
+          <ul class="bullet-list">
+            <li data-i18n="dev_city_b1">Проект интерактивной карты автобусного движения Яловы</li>
+            <li data-i18n="dev_city_b2">Карты с маршрутами, остановками, цветными линиями</li>
+            <li data-i18n="dev_city_b3">Потенциал для интеграции расписания и ETA</li>
+          </ul>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-item-title" data-i18n="dev_saas_title">SaaS &amp; формы регистрации</div>
+          <div class="timeline-item-role" data-i18n="dev_saas_role">
+            Frontend · <span>MealPOPs и другие клиенты</span>
+          </div>
+          <ul class="bullet-list">
+            <li data-i18n="dev_saas_b1">Лендинги и self-sign-up страницы с API-интеграцией</li>
+            <li data-i18n="dev_saas_b2">Работа с формами, валидацией и передачей данных в систему клиента</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- DEVELOPMENT PROJECTS -->
+    <section class="section">
+      <div class="section-header">
+        <h2 class="section-title" data-i18n="dev_projects_title">Development Projects</h2>
+        <p class="section-subtitle" data-i18n="dev_projects_subtitle">
+          Проекты, где я отвечал за дизайн, верстку и фронтенд: от студий архитектуры до локальных кафе и транспортных сервисов.
+        </p>
+      </div>
+
+      <div class="projects-grid reveal">
+        <article class="project-card">
+          <div class="project-top">
+            <div>
+              <div class="project-name" data-i18n="dev_proj_av_name">AV Design Studio</div>
+              <div class="project-tagline" data-i18n="dev_proj_av_tagline">Архитектура и интерьер · Нью-Йорк</div>
+            </div>
+            <a href="https://www.designedbyav.com/" class="project-link" target="_blank" rel="noreferrer" data-i18n="dev_proj_av_link">
+              Открыть сайт →
+            </a>
+          </div>
+          <p class="project-text" data-i18n="dev_proj_av_text">
+            Сайт-портфолио для студии архитектуры и дизайна. Структура под проекты, чистая типографика, адаптация под мобильные устройства.
+          </p>
+          <p class="project-meta" data-i18n="dev_proj_av_meta">
+            Роль: структура, верстка, визуальная подача кейсов.
+          </p>
+          <div class="stack-row">
+            <span class="stack-pill" data-i18n="dev_proj_av_stack1">Next.js</span>
+            <span class="stack-pill" data-i18n="dev_proj_av_stack2">Responsive</span>
+            <span class="stack-pill" data-i18n="dev_proj_av_stack3">Portfolio</span>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="project-top">
+            <div>
+              <div class="project-name" data-i18n="dev_proj_valens_name">VALENS Café</div>
+              <div class="project-tagline" data-i18n="dev_proj_valens_tagline">Сайт-меню для кафе</div>
+            </div>
+            <a href="https://valens-cafe.vercel.app/" class="project-link" target="_blank" rel="noreferrer" data-i18n="dev_proj_valens_link">
+              Открыть сайт →
+            </a>
+          </div>
+          <p class="project-text" data-i18n="dev_proj_valens_text">
+            Современный сайт в чёрном стиле с акцентом на меню и атмосферу заведения. Проект реализован и продан реальному кафе.
+          </p>
+          <p class="project-meta" data-i18n="dev_proj_valens_meta">
+            Роль: идея, дизайн, разработка.
+          </p>
+          <div class="stack-row">
+            <span class="stack-pill" data-i18n="dev_proj_valens_stack1">Next.js</span>
+            <span class="stack-pill" data-i18n="dev_proj_valens_stack2">Restaurant</span>
+            <span class="stack-pill" data-i18n="dev_proj_valens_stack3">Dark Theme</span>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="project-top">
+            <div>
+              <div class="project-name" data-i18n="dev_proj_amour_name">AMOUR</div>
+              <div class="project-tagline" data-i18n="dev_proj_amour_tagline">Минималистичный лендинг</div>
+            </div>
+            <a href="https://amour-nine.vercel.app/" class="project-link" target="_blank" rel="noreferrer" data-i18n="dev_proj_amour_link">
+              Открыть сайт →
+            </a>
+          </div>
+          <p class="project-text" data-i18n="dev_proj_amour_text">
+            Лаконичный одностраничный сайт, который использую как прототип и демонстрацию подхода к визуалу и верстке.
+          </p>
+          <div class="stack-row">
+            <span class="stack-pill" data-i18n="dev_proj_amour_stack1">Next.js</span>
+            <span class="stack-pill" data-i18n="dev_proj_amour_stack2">Landing</span>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="project-top">
+            <div>
+              <div class="project-name" data-i18n="dev_proj_yalova_name">Yalova Transport Map (demo)</div>
+              <div class="project-tagline" data-i18n="dev_proj_yalova_tagline">Интерактивная карта транспорта</div>
+            </div>
+            <a href="https://yalovatransport.vercel.app/" class="project-link" target="_blank" rel="noreferrer" data-i18n="dev_proj_yalova_link">
+              Открыть демо →
+            </a>
+          </div>
+          <p class="project-text" data-i18n="dev_proj_yalova_text">
+            Демонстрация идеи сервиса с живой картой автобусных маршрутов Яловы: линии, остановки и интерфейс для будущих функций.
+          </p>
+          <p class="project-meta" data-i18n="dev_proj_yalova_meta">
+            Роль: продуктовая идея, архитектура данных и фронтенд-реализация.
+          </p>
+          <div class="stack-row">
+            <span class="stack-pill" data-i18n="dev_proj_yalova_stack1">JavaScript</span>
+            <span class="stack-pill" data-i18n="dev_proj_yalova_stack2">Interactive Map</span>
+            <span class="stack-pill" data-i18n="dev_proj_yalova_stack3">Urban</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="section" id="contact">
+      <div class="section-header">
+        <h2 class="section-title" data-i18n="contact_title">Contact</h2>
+        <p class="section-subtitle" data-i18n="contact_subtitle">
+          Для сотрудничества по киберспорту или веб-разработке — напишите мне любым удобным способом.
+        </p>
+      </div>
+
+      <div class="contact-card reveal">
+        <div>
+          <h3 class="contact-title" data-i18n="contact_card_title">Обсудим ваш проект</h3>
+          <p class="contact-text" data-i18n="contact_card_text">
+            Готов подключиться как к разовым задачам (турнир, сайт, лендинг), так и к долгосрочным проектам: развитие лиг, SaaS-платформ, цифровых сервисов для города или бизнеса.
+          </p>
+        </div>
+        <div class="contact-grid">
+          <div class="contact-item">
+            <div class="contact-label" data-i18n="contact_label_email">Email</div>
+            <div class="contact-value">
+              <a href="mailto:dimabond.dev@gmail.com">dimabond.dev@gmail.com</a>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-label" data-i18n="contact_label_telegram">Telegram</div>
+            <div class="contact-value">
+              <a href="https://t.me/dima_b0nd" target="_blank" rel="noreferrer">@dima_b0nd</a>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-label" data-i18n="contact_label_instagram">Instagram</div>
+            <div class="contact-value">
+              <a href="https://www.instagram.com/dima_b0nd/" target="_blank" rel="noreferrer">@dima_b0nd</a>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-label" data-i18n="contact_label_phone">Телефон</div>
+            <div class="contact-value">
+              <a href="tel:+905010399572">+90 501 039 9572</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer">
+        © <span id="year"></span> Bond.dev — Dmitrii Bondarev
+      </div>
+    </section>
+  </div>
+
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" crossorigin="anonymous"></script>
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+    gsap.registerPlugin(ScrollTrigger);
+
+    gsap.from(".hero-inner", {
+      opacity: 0,
+      y: 30,
+      duration: 0.9,
+      ease: "power3.out"
+    });
+
+    gsap.from(".hero-photo-card", {
+      opacity: 0,
+      y: 40,
+      duration: 1,
+      delay: 0.1,
+      ease: "power3.out"
+    });
+
+    gsap.utils.toArray(".reveal").forEach(function (el) {
+      gsap.to(el, {
+        opacity: 1,
+        y: 0,
+        duration: 0.7,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: el,
+          start: "top 80%",
+          toggleActions: "play none none reverse"
+        }
+      });
+    });
+
+    // i18n
+    let translations = {};
+    let currentLang = "ru";
+
+    function applyTranslations(lang) {
+      if (!translations[lang]) return;
+      currentLang = lang;
+      document.documentElement.lang = lang;
+      document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
+
+      document.querySelectorAll("[data-i18n]").forEach(el => {
+        const key = el.dataset.i18n;
+        const value = translations[lang][key];
+        if (value !== undefined) {
+          el.innerHTML = value;
+        }
+      });
+
+      document.querySelectorAll(".lang-switch span").forEach(s => s.classList.remove("active"));
+      const active = document.querySelector('.lang-switch span[data-lang="' + lang + '"]');
+      if (active) active.classList.add("active");
+
+      localStorage.setItem("site-lang", lang);
+    }
+
+    fetch("translations.json")
+      .then(r => r.json())
+      .then(data => {
+        translations = data;
+        const saved = localStorage.getItem("site-lang") || "ru";
+        applyTranslations(saved);
+      })
+      .catch(err => {
+        console.error("Translations load error", err);
+      });
+
+    document.querySelectorAll(".lang-switch span").forEach(span => {
+      span.addEventListener("click", () => {
+        const lang = span.dataset.lang;
+        applyTranslations(lang);
+      });
+    });
+  </script>
+</body>
+</html>
