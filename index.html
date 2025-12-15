@@ -424,32 +424,6 @@
       max-height: 360px;
     }
 
-    .hero-photo-badge {
-      position: absolute;
-      bottom: 18px;
-      right: 18px;
-      border-radius: 999px;
-      padding: 6px 12px;
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      background: rgba(5, 7, 22, 0.9);
-      border: 1px solid rgba(91, 107, 255, 0.8);
-      color: var(--muted);
-      backdrop-filter: blur(10px);
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .hero-photo-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 99px;
-      background: var(--accent2);
-      box-shadow: 0 0 16px rgba(159, 75, 255, 1);
-    }
-
     @media (max-width: 880px) {
       body {
         padding: 20px 12px 40px;
@@ -876,10 +850,6 @@
         <div class="hero-photo-card">
           <!-- Положи рядом с index.html файл dmitrii-bondarev.jpg -->
           <img src="dmitrii-bondarev.jpg" alt="Dmitrii Bondarev" class="hero-photo" />
-          <div class="hero-photo-badge" data-i18n="hero_badge">
-            <span class="hero-photo-dot"></span>
-            Based in Türkiye · Remote
-          </div>
         </div>
       </div>
     </section>
@@ -1456,8 +1426,8 @@
       .then(data => {
         translations = data;
         const saved = localStorage.getItem("site-lang");
-        if (saved && applyTranslations(saved)) {
-          hideLanguageGate();
+        if (saved) {
+          applyTranslations(saved);
         }
       })
       .catch(err => {
@@ -1476,7 +1446,13 @@
       btn.addEventListener("click", () => {
         const lang = btn.dataset.lang;
         const translated = applyTranslations(lang);
-        if (translated) hideLanguageGate();
+
+        if (!translated) {
+          currentLang = lang;
+          localStorage.setItem("site-lang", lang);
+        }
+
+        hideLanguageGate();
       });
     });
   </script>
