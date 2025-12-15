@@ -128,23 +128,122 @@
 
     .lang-switch {
       display: flex;
-      gap: 10px;
+      gap: 12px;
       margin-left: 16px;
       border-left: 1px solid rgba(255,255,255,0.1);
       padding-left: 14px;
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 999px;
+      padding: 6px 12px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
     }
 
     .lang-switch span {
       cursor: pointer;
-      font-size: 12px;
-      opacity: 0.55;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      opacity: 0.75;
       transition: 0.2s;
+      border: 1px solid rgba(150, 90, 255, 0.5);
+      border-radius: 12px;
+      padding: 7px 11px;
+      color: #d8ddff;
+      background: linear-gradient(145deg, rgba(91, 107, 255, 0.25), rgba(159, 75, 255, 0.2));
+      box-shadow: 0 8px 20px rgba(91, 107, 255, 0.15);
     }
 
-    .lang-switch span:hover,
+    .lang-switch span:hover {
+      opacity: 1;
+      transform: translateY(-1px);
+      box-shadow: 0 10px 26px rgba(159, 75, 255, 0.25);
+      color: #fff;
+    }
+
     .lang-switch span.active {
       opacity: 1;
-      color: var(--accent);
+      color: #fff;
+      border-color: rgba(255, 255, 255, 0.6);
+      box-shadow: 0 10px 30px rgba(159, 75, 255, 0.32), 0 0 0 1px rgba(255, 255, 255, 0.07) inset;
+      background: linear-gradient(135deg, rgba(159, 75, 255, 0.45), rgba(91, 107, 255, 0.4));
+      transform: translateY(-2px);
+    }
+
+    /* Language gate */
+    body.gate-open {
+      overflow: hidden;
+    }
+
+    body.gate-open .page {
+      filter: blur(6px);
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .language-gate {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at 20% 20%, rgba(91, 107, 255, 0.3), transparent 40%),
+        radial-gradient(circle at 80% 20%, rgba(159, 75, 255, 0.25), transparent 45%),
+        rgba(2, 2, 8, 0.9);
+      z-index: 1000;
+      transition: opacity 0.25s ease, visibility 0.25s ease;
+      backdrop-filter: blur(8px);
+    }
+
+    .language-gate.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .language-modal {
+      background: linear-gradient(145deg, rgba(11, 12, 21, 0.9), rgba(16, 18, 34, 0.9));
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 32px 32px 26px;
+      max-width: 440px;
+      width: min(440px, 92vw);
+      box-shadow: 0 25px 80px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+      text-align: center;
+    }
+
+    .language-modal h3 {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    .language-modal p {
+      color: var(--muted);
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+
+    .language-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .language-btn {
+      background: linear-gradient(135deg, rgba(159, 75, 255, 0.4), rgba(91, 107, 255, 0.35));
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 14px;
+      padding: 14px 12px;
+      color: #fff;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      cursor: pointer;
+      box-shadow: 0 12px 30px rgba(91, 107, 255, 0.35);
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .language-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 38px rgba(159, 75, 255, 0.38);
     }
 
     @media (max-width: 880px) {
@@ -690,6 +789,19 @@
   </style>
 </head>
 <body>
+  <div class="language-gate" id="languageGate">
+    <div class="language-modal">
+      <h3 data-i18n="lang_gate_title">Выберите язык</h3>
+      <p data-i18n="lang_gate_subtitle">Выберите, на каком языке показать сайт.</p>
+      <div class="language-grid">
+        <button class="language-btn" data-lang="ru">Русский</button>
+        <button class="language-btn" data-lang="en">English</button>
+        <button class="language-btn" data-lang="tr">Türkçe</button>
+        <button class="language-btn" data-lang="ar">العربية</button>
+      </div>
+    </div>
+  </div>
+
   <div class="page">
     <!-- NAVBAR -->
     <header class="nav">
@@ -1039,6 +1151,7 @@
             <li data-i18n="dev_rest_b1">Разработка сайта-меню для VALENS Café (Турция)</li>
             <li data-i18n="dev_rest_b2">Фокус на mobile-first и визуальную подачу блюд</li>
             <li data-i18n="dev_rest_b3">Подготовка структуры для подключения онлайн-заказа и бронирований</li>
+            <li data-i18n="dev_rest_b4">Создание сайта Hidden Back — ресторана современной кухни</li>
           </ul>
         </div>
 
@@ -1143,6 +1256,29 @@
             <span class="stack-pill" data-i18n="dev_proj_valens_stack1">Next.js</span>
             <span class="stack-pill" data-i18n="dev_proj_valens_stack2">Restaurant</span>
             <span class="stack-pill" data-i18n="dev_proj_valens_stack3">Dark Theme</span>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="project-top">
+            <div>
+              <div class="project-name" data-i18n="dev_proj_hidden_name">Hidden Back</div>
+              <div class="project-tagline" data-i18n="dev_proj_hidden_tagline">Ресторан современной кухни</div>
+            </div>
+            <a href="https://hiddenback.vercel.app/" class="project-link" target="_blank" rel="noreferrer" data-i18n="dev_proj_hidden_link">
+              Открыть сайт →
+            </a>
+          </div>
+          <p class="project-text" data-i18n="dev_proj_hidden_text">
+            Сайт для ресторана Hidden Back: бронирование, акценты на кухне и атмосфере, дизайн, ориентированный на мобильных пользователях.
+          </p>
+          <p class="project-meta" data-i18n="dev_proj_hidden_meta">
+            Роль: концепция, UX/UI и фронтенд (активная разработка).
+          </p>
+          <div class="stack-row">
+            <span class="stack-pill" data-i18n="dev_proj_hidden_stack1">Next.js</span>
+            <span class="stack-pill" data-i18n="dev_proj_hidden_stack2">Restaurant</span>
+            <span class="stack-pill" data-i18n="dev_proj_hidden_stack3">Mobile-first</span>
           </div>
         </article>
 
@@ -1277,11 +1413,22 @@
     });
 
     // i18n
+    const languageGate = document.getElementById("languageGate");
     let translations = {};
     let currentLang = "ru";
 
+    function showLanguageGate() {
+      document.body.classList.add("gate-open");
+      languageGate.classList.remove("hidden");
+    }
+
+    function hideLanguageGate() {
+      languageGate.classList.add("hidden");
+      document.body.classList.remove("gate-open");
+    }
+
     function applyTranslations(lang) {
-      if (!translations[lang]) return;
+      if (!translations[lang]) return false;
       currentLang = lang;
       document.documentElement.lang = lang;
       document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
@@ -1299,23 +1446,37 @@
       if (active) active.classList.add("active");
 
       localStorage.setItem("site-lang", lang);
+      return true;
     }
+
+    showLanguageGate();
 
     fetch("translations.json")
       .then(r => r.json())
       .then(data => {
         translations = data;
-        const saved = localStorage.getItem("site-lang") || "ru";
-        applyTranslations(saved);
+        const saved = localStorage.getItem("site-lang");
+        if (saved && applyTranslations(saved)) {
+          hideLanguageGate();
+        }
       })
       .catch(err => {
         console.error("Translations load error", err);
+        hideLanguageGate();
       });
 
     document.querySelectorAll(".lang-switch span").forEach(span => {
       span.addEventListener("click", () => {
         const lang = span.dataset.lang;
         applyTranslations(lang);
+      });
+    });
+
+    document.querySelectorAll(".language-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const lang = btn.dataset.lang;
+        const translated = applyTranslations(lang);
+        if (translated) hideLanguageGate();
       });
     });
   </script>
